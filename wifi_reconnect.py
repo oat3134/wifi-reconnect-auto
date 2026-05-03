@@ -3,7 +3,8 @@ import time
 import sys
 
 # ตั้งค่าชื่อ Wi-Fi ที่ต้องการเชื่อมต่อ
-TARGET_SSID = "ggg"
+TARGET_SSID = "IOT-RMUTI"
+# TARGET_SSID = "ggg"
 
 def toggle_wifi(ssid):
     try:
