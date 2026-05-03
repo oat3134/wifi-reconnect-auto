@@ -38,4 +38,4 @@ if __name__ == "__main__":
         
         # รอ 24 ชั่วโมง (86400 วินาที)
         print(f"Waiting for 24 hours...")
-        time.sleep(10)
+        time.sleep(86400)
