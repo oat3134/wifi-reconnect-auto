@@ -1,10 +1,17 @@
 import subprocess
 import time
-import sys
+import random
 
 # ตั้งค่าชื่อ Wi-Fi ที่ต้องการเชื่อมต่อ
 TARGET_SSID = "IOT-RMUTI"
 # TARGET_SSID = "ggg"
+
+MIN_INTERVAL_HOURS = 12
+MAX_INTERVAL_HOURS = 24
+
+
+def get_random_interval_seconds(min_hours, max_hours):
+    return random.randint(min_hours * 3600, max_hours * 3600)
 
 def toggle_wifi(ssid):
     try:
@@ -33,10 +40,17 @@ def toggle_wifi(ssid):
         print(f"Error occurred: {e}")
 
 if __name__ == "__main__":
-    print(f"Script started. Target: {TARGET_SSID}. Interval: 24h.")
+    print(
+        f"Script started. Target: {TARGET_SSID}. "
+        f"Random interval: {MIN_INTERVAL_HOURS}-{MAX_INTERVAL_HOURS}h."
+    )
+
     while True:
         toggle_wifi(TARGET_SSID)
-        
-        # รอ 24 ชั่วโมง (86400 วินาที)
-        print(f"Waiting for 24 hours...")
-        time.sleep(86400)
+
+        wait_seconds = get_random_interval_seconds(MIN_INTERVAL_HOURS, MAX_INTERVAL_HOURS)
+        wait_hours = wait_seconds / 3600
+
+        # รอแบบสุ่มระหว่าง 6 ถึง 24 ชั่วโมง
+        print(f"Waiting for {wait_hours:.2f} hours ({wait_seconds} seconds)...")
+        time.sleep(wait_seconds)
